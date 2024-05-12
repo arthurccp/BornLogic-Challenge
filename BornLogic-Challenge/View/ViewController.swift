@@ -5,6 +5,7 @@
 //  Created by Arthur on 12/05/2024.
 //  Copyright © 2024 Arthur. All rights reserved.
 //
+
 import UIKit
 
 class ViewController: UIViewController {
@@ -15,32 +16,19 @@ class ViewController: UIViewController {
         return tableView
     }()
     
-    var articles: [NewsArticle] = []
-    
-    override func viewWillAppear(_ animated: Bool) {
-        setupTableView()
-        tableView.reloadData()
-    }
+    var dataManager: DataFetchable = NewsDataManager()
+    var dataSource: TableViewDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.reloadData()
+        view.addSubview(tableView)
+        setupTableViewConstraints()
+        UIConfigurator.setupNavigationBar(viewController: self)
+        setupTableView()
         fetchData()
-        tableView.reloadData()
-        
-        let navigationController = UINavigationController(rootViewController: self)
-        UIApplication.shared.windows.first?.rootViewController = navigationController
-        
-        // Configurando o título da barra de navegação
-        navigationItem.title = "TableView"
     }
     
-    func setupTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(ArticleTableViewCell.self, forCellReuseIdentifier: "ArticleCell")
-        
-        view.addSubview(tableView)
+    internal func setupTableViewConstraints() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -49,56 +37,34 @@ class ViewController: UIViewController {
             ])
     }
     
+    internal func setupTableView() {
+        dataSource = TableViewDataSource()
+        tableView.dataSource = dataSource
+        tableView.delegate = self
+        tableView.register(ArticleTableViewCell.self, forCellReuseIdentifier: "ArticleCell")
+        fetchData() 
+    }
+
     
-    func fetchData() {
-        let newsRequest = NewsRequest()
-        newsRequest.fetchNews { newsResponse, error in
+    internal func fetchData() {
+        dataManager.fetchData { [weak self] articles, error in
             if let error = error {
                 print("Erro: \(error.localizedDescription)")
                 return
             }
-            
-            guard let newsResponse = newsResponse else {
-                print("Resposta inválida")
-                return
-            }
-            
-            self.articles = newsResponse.articles
-            
+            self?.dataSource?.articles = articles ?? []
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             }
         }
     }
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
-        
-        let article = articles[indexPath.row]
-        cell.titleLabel.text = article.title
-        cell.authorLabel.text = article.author ?? "Autor Desconhecido"
-        cell.descriptionLabel.text = article.description ?? "Sem descrição"
-        
-        return cell
-    }
-    
+extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedArticle = articles[indexPath.row]
-        
-        // Cria uma instância da ViewController de detalhes
+        let selectedArticle = dataSource?.articles[indexPath.row]
         let detailViewController = ArticleDetailViewController()
-        
-        // Configura os dados necessários na nova ViewController
         detailViewController.article = selectedArticle
-        
-        // Navega para a nova ViewController
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

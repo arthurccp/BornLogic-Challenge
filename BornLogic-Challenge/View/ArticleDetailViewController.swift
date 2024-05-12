@@ -10,61 +10,78 @@ import Foundation
 import UIKit
 
 class ArticleDetailViewController: UIViewController {
+    
     var article: NewsArticle?
+    
+    private var imageView: UIImageView!
+    private var stackView: UIStackView!
+    private var dateLabel: UILabel!
+    private var contentLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         
-        // Exibir a imagem do artigo, se disponível
-        if let urlString = article?.urlToImage {
-            let imageView = UIImageView()
-            imageView.contentMode = .scaleAspectFit
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(imageView)
-            imageView.loadImage(fromURL: urlString)
-            
-            NSLayoutConstraint.activate([
-                imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-                imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-                imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-                imageView.heightAnchor.constraint(equalToConstant: 200) // Altura da imagem
-                ])
-            
-            // Exibir a data de publicação do artigo
-            if let publicationDate = article?.publishedAt {
-                let dateLabel = UILabel()
-                dateLabel.translatesAutoresizingMaskIntoConstraints = false
-                dateLabel.text = "Data de publicação: \(publicationDate)"
-                view.addSubview(dateLabel)
-                
-                NSLayoutConstraint.activate([
-                    dateLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
-                    dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-                    dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-                    ])
-                
-                // Exibir o conteúdo do artigo
-                if let articleContent = article?.content {
-                    let contentLabel = UILabel()
-                    contentLabel.translatesAutoresizingMaskIntoConstraints = false
-                    contentLabel.text = articleContent
-                    contentLabel.numberOfLines = 0 // Permitir múltiplas linhas para o conteúdo
-                    view.addSubview(contentLabel)
-                    
-                    NSLayoutConstraint.activate([
-                        contentLabel.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 20),
-                        contentLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-                        contentLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-                        contentLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-                        ])
-                }
-            }
-        }
+        setupImageView()
+        setupStackView()
+        setupDateLabel()
+        setupContentLabel()
+    }
+    
+    internal func setupImageView() {
+        guard let urlString = article?.urlToImage else { return }
+        
+        imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(imageView)
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            imageView.heightAnchor.constraint(equalToConstant: 200) // Altura da imagem
+            ])
+        
+        imageView.loadImage(fromURL: urlString)
+    }
+    
+    internal func setupStackView() {
+        stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            ])
+    }
+    
+    internal func setupDateLabel() {
+        guard let publicationDate = article?.publishedAt else { return }
+        
+        dateLabel = UILabel()
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.text = "Data de publicação: \(publicationDate)"
+        stackView.addArrangedSubview(dateLabel)
+    }
+    
+    internal func setupContentLabel() {
+        guard let articleContent = article?.content else { return }
+        
+        contentLabel = UILabel()
+        contentLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentLabel.text = articleContent
+        contentLabel.numberOfLines = 0 // Permitir múltiplas linhas para o conteúdo
+        stackView.addArrangedSubview(contentLabel)
     }
 }
 
+// Extension para carregar a imagem de uma URL
 extension UIImageView {
     func loadImage(fromURL urlString: String) {
         guard let url = URL(string: urlString) else { return }

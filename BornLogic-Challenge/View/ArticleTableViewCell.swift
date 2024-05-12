@@ -9,8 +9,11 @@
 import Foundation
 import UIKit
 
-class ArticleTableViewCell: UITableViewCell {
-    let titleLabel: UILabel = {
+class ArticleTableViewCell: UITableViewCell{
+    
+    // MARK: - Properties
+    
+    var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
@@ -18,7 +21,7 @@ class ArticleTableViewCell: UITableViewCell {
         return label
     }()
     
-    let authorLabel: UILabel = {
+    var authorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
@@ -26,7 +29,7 @@ class ArticleTableViewCell: UITableViewCell {
         return label
     }()
     
-    let descriptionLabel: UILabel = {
+    var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
@@ -34,13 +37,27 @@ class ArticleTableViewCell: UITableViewCell {
         return label
     }()
     
+    // MARK: - Initialization
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        setupSubviews()
+        setupConstraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private Methods
+    
+    internal func setupSubviews() {
         addSubview(titleLabel)
         addSubview(authorLabel)
         addSubview(descriptionLabel)
-        
+    }
+    
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -55,9 +72,5 @@ class ArticleTableViewCell: UITableViewCell {
             descriptionLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
             ])
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

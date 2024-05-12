@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BornLogic-Challenge/View/ViewController.swift"
-            timestampString = "737227568.804208"
+            filePath = "BornLogic-Challenge/Presenter/NewsDataManager.swift"
+            timestampString = "737249984.73827"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "fetchData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,14 +25,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BornLogic-Challenge/View/ViewController.swift"
-            timestampString = "737227568.804374"
+            filePath = "BornLogic-Challenge/Presenter/NewsDataManager.swift"
+            timestampString = "737249984.739036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "fetchData(completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BornLogic_Challenge.NewsDataManager.fetchData(completion: (Swift.Optional&lt;Swift.Array&lt;BornLogic_Challenge.NewsArticle&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "BornLogic-Challenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arthur/Desktop/BornLogic-Challenge/BornLogic-Challenge/Presenter/NewsDataManager.swift"
+                  timestampString = "737235252.233791"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "102">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;BornLogic_Challenge.NewsResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in BornLogic_Challenge.NewsDataManager.fetchData(completion: (Swift.Optional&lt;Swift.Array&lt;BornLogic_Challenge.NewsArticle&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "BornLogic-Challenge"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arthur/Desktop/BornLogic-Challenge/BornLogic-Challenge/Presenter/NewsDataManager.swift"
+                  timestampString = "737235252.238079"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "141">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -41,77 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BornLogic-Challenge/View/ViewController.swift"
-            timestampString = "737227568.804515"
+            filePath = "BornLogic-Challenge/Presenter/NewsDataManager.swift"
+            timestampString = "737249984.739306"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BornLogic-Challenge/View/ViewController.swift"
-            timestampString = "737227568.804648"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BornLogic-Challenge/View/ViewController.swift"
-            timestampString = "737227568.804763"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BornLogic-Challenge/View/ViewController.swift"
-            timestampString = "737227568.80486"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BornLogic-Challenge/View/ViewController.swift"
-            timestampString = "737227568.804957"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "tableView(_:didSelectRowAt:)"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "fetchData(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -5,32 +5,54 @@
 //  Created by Arthur on 12/05/2024.
 //  Copyright © 2024 Arthur. All rights reserved.
 //
-
 import XCTest
 @testable import BornLogic_Challenge
 
-class BornLogic_ChallengeTests: XCTestCase {
+class NewsRequestTests: XCTestCase {
+    
+    var newsRequest: NewsRequest!
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        newsRequest = NewsRequest()
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        newsRequest = nil
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    // Teste se a chamada à API está funcionando corretamente
+    func testFetchNewsAPI() {
+        let expectation = self.expectation(description: "API call successful")
+        
+        newsRequest.fetchNews { newsResponse, error in
+            XCTAssertNotNil(newsResponse, "A resposta da API não deve ser nula")
+            XCTAssertNil(error, "Não deve haver erro ao fazer a chamada à API")
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    // Teste se os dados retornados estão sendo processados corretamente
+    func testParseNewsResponse() {
+        let expectation = self.expectation(description: "Data parsing successful")
+        
+        newsRequest.fetchNews { newsResponse, error in
+            XCTAssertNotNil(newsResponse, "A resposta da API não deve ser nula")
+            XCTAssertNil(error, "Não deve haver erro ao fazer a chamada à API")
+            
+            if let articles = newsResponse?.articles {
+                XCTAssertFalse(articles.isEmpty, "A lista de artigos não deve estar vazia")
+            } else {
+                XCTFail("A lista de artigos não deve ser nula")
+            }
+            
+            expectation.fulfill()
         }
+        
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
 }
