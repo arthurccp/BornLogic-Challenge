@@ -16,7 +16,11 @@ protocol DataFetchable {
 class DataManager: DataFetchable {
     func fetchData(completion: @escaping ([NewsArticle]?, Error?) -> Void) {
         let newsRequest = NewsRequest()
-        newsRequest.fetchNews { newsResponse, error in
+        newsRequest.fetchData { newsResponse, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
             completion(newsResponse?.articles, error)
         }
     }

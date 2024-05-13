@@ -9,7 +9,7 @@
 import Foundation
 
 class NewsRequest{
-    func fetchNews(completion: @escaping (NewsResponse?, Error?) -> Void) {
+    func fetchData(completion: @escaping (NewsResponse?, Error?) -> Void) {
         let urlString = "https://newsapi.org/v2/top-headlines?country=us&apiKey=86a4155f580e4b03913965668d29f740"
         
         guard let url = URL(string: urlString) else {

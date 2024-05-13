@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		8E1A5D082BF1B240004F4BFE /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A5D072BF1B23F004F4BFE /* CacheManager.swift */; };
+		8E2B58082BF28220000791AD /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B58072BF28220000791AD /* ViewControllerTests.swift */; };
+		8E2B580A2BF28931000791AD /* ArticleDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2B58092BF28930000791AD /* ArticleDetailViewControllerTests.swift */; };
 		8EA1947C2BF06B5400DBCF8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA1947B2BF06B5400DBCF8B /* AppDelegate.swift */; };
 		8EA1947E2BF06B5400DBCF8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA1947D2BF06B5400DBCF8B /* ViewController.swift */; };
 		8EA194812BF06B5400DBCF8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EA1947F2BF06B5400DBCF8B /* Main.storyboard */; };
 		8EA194832BF06B5700DBCF8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EA194822BF06B5700DBCF8B /* Assets.xcassets */; };
 		8EA194862BF06B5700DBCF8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EA194842BF06B5700DBCF8B /* LaunchScreen.storyboard */; };
-		8EA194912BF06B5700DBCF8B /* BornLogic_ChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA194902BF06B5700DBCF8B /* BornLogic_ChallengeTests.swift */; };
+		8EA194912BF06B5700DBCF8B /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA194902BF06B5700DBCF8B /* RequestTests.swift */; };
 		8EA1949F2BF06B7700DBCF8B /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA1949E2BF06B7700DBCF8B /* Data.swift */; };
 		8EA194A12BF06BB400DBCF8B /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA194A02BF06BB400DBCF8B /* Parser.swift */; };
 		8EA194A32BF06C0200DBCF8B /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA194A22BF06C0200DBCF8B /* ArticleTableViewCell.swift */; };
@@ -35,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		8E1A5D072BF1B23F004F4BFE /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		8E2B58072BF28220000791AD /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
+		8E2B58092BF28930000791AD /* ArticleDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailViewControllerTests.swift; sourceTree = "<group>"; };
 		8EA194782BF06B5400DBCF8B /* BornLogic-Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BornLogic-Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EA1947B2BF06B5400DBCF8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EA1947D2BF06B5400DBCF8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,7 +47,7 @@
 		8EA194852BF06B5700DBCF8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8EA194872BF06B5700DBCF8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EA1948C2BF06B5700DBCF8B /* BornLogic-ChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BornLogic-ChallengeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8EA194902BF06B5700DBCF8B /* BornLogic_ChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BornLogic_ChallengeTests.swift; sourceTree = "<group>"; };
+		8EA194902BF06B5700DBCF8B /* RequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
 		8EA194922BF06B5700DBCF8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EA1949E2BF06B7700DBCF8B /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		8EA194A02BF06BB400DBCF8B /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
@@ -107,7 +111,9 @@
 		8EA1948F2BF06B5700DBCF8B /* BornLogic-ChallengeTests */ = {
 			isa = PBXGroup;
 			children = (
-				8EA194902BF06B5700DBCF8B /* BornLogic_ChallengeTests.swift */,
+				8EA194902BF06B5700DBCF8B /* RequestTests.swift */,
+				8E2B58072BF28220000791AD /* ViewControllerTests.swift */,
+				8E2B58092BF28930000791AD /* ArticleDetailViewControllerTests.swift */,
 				8EA194922BF06B5700DBCF8B /* Info.plist */,
 			);
 			path = "BornLogic-ChallengeTests";
@@ -262,7 +268,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EA194912BF06B5700DBCF8B /* BornLogic_ChallengeTests.swift in Sources */,
+				8E2B580A2BF28931000791AD /* ArticleDetailViewControllerTests.swift in Sources */,
+				8E2B58082BF28220000791AD /* ViewControllerTests.swift in Sources */,
+				8EA194912BF06B5700DBCF8B /* RequestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

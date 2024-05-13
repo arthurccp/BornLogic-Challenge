@@ -45,7 +45,6 @@ class ViewController: UIViewController {
         fetchData() 
     }
 
-    
     internal func fetchData() {
         if let cachedArticles: [NewsArticle] = CacheManager().fetchDataFromUserDefaults(forKey: "newsArticles") {
             self.dataSource?.articles = cachedArticles
@@ -55,7 +54,8 @@ class ViewController: UIViewController {
         } else {
             dataManager.fetchData { [weak self] articles, error in
                 if let error = error {
-                    print("Erro: \(error.localizedDescription)")
+                    // Exibe um alerta com a mensagem de erro
+                    self?.presentErrorAlert(message: "Erro ao buscar dados: \(error.localizedDescription)")
                     return
                 }
                 self?.dataSource?.articles = articles ?? []
@@ -68,6 +68,13 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    private func presentErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Erro", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
 }
 
 extension ViewController: UITableViewDelegate {

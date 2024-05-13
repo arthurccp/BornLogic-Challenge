@@ -12,12 +12,12 @@ class ArticleDetailViewController: UIViewController {
     
     var article: NewsArticle?
     
-    private var imageView: UIImageView?
-    private var stackView: UIStackView?
-    private var dateLabel: UILabel?
-    private var noImageView: UIView?
-    private var contentLabel: UILabel?
-    private var activityIndicator: UIActivityIndicatorView? 
+    internal var imageView: UIImageView?
+    internal var stackView: UIStackView?
+    internal var dateLabel: UILabel?
+    internal var noImageView: UIView?
+    internal var contentLabel: UILabel?
+    internal var activityIndicator: UIActivityIndicatorView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,7 +139,7 @@ extension UIImageView {
         }
     }
     
-    private func removeActivityIndicator() {
+    internal func removeActivityIndicator() {
         self.subviews.forEach {
             if let activityIndicator = $0 as? UIActivityIndicatorView {
                 activityIndicator.stopAnimating()
