@@ -16,21 +16,17 @@ class NewsRequest{
             print("URL inválida")
             return
         }
-        
         let session = URLSession.shared
-        
         let task = session.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(nil, error)
                 return
             }
-            
             guard let responseData = data else {
                 print("Nenhum dado retornado")
                 completion(nil, NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Nenhum dado retornado"]))
                 return
             }
-            
             do {
                 let newsResponse = try JSONDecoder().decode(NewsResponse.self, from: responseData)
                 completion(newsResponse, nil)
@@ -39,7 +35,6 @@ class NewsRequest{
                 completion(nil, error)
             }
         }
-        
         task.resume()
     }
 }

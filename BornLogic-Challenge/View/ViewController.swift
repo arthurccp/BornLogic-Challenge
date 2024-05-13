@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class ViewController: UIViewController {
     
     let tableView: UITableView = {
@@ -17,7 +16,7 @@ class ViewController: UIViewController {
         return tableView
     }()
     
-    var dataManager: DataManager = DataManager()
+    var dataManager: DataFetchable = DataManager()
     var dataSource: TableViewDataSource?
     
     override func viewDidLoad() {
@@ -26,6 +25,7 @@ class ViewController: UIViewController {
         setupTableViewConstraints()
         UIConfigurator.setupNavigationBar(viewController: self)
         setupTableView()
+        fetchData()
     }
     
     internal func setupTableViewConstraints() {
@@ -42,19 +42,29 @@ class ViewController: UIViewController {
         tableView.dataSource = dataSource
         tableView.delegate = self
         tableView.register(ArticleTableViewCell.self, forCellReuseIdentifier: "ArticleCell")
-        fetchData()
+        fetchData() 
     }
-    
+
     
     internal func fetchData() {
-        dataManager.fetchData { [weak self] articles, error in
-            if let error = error {
-                print("Erro: \(error.localizedDescription)")
-                return
-            }
-            self?.dataSource?.articles = articles ?? []
+        if let cachedArticles: [NewsArticle] = CacheManager().fetchDataFromUserDefaults(forKey: "newsArticles") {
+            self.dataSource?.articles = cachedArticles
             DispatchQueue.main.async {
-                self?.tableView.reloadData()
+                self.tableView.reloadData()
+            }
+        } else {
+            dataManager.fetchData { [weak self] articles, error in
+                if let error = error {
+                    print("Erro: \(error.localizedDescription)")
+                    return
+                }
+                self?.dataSource?.articles = articles ?? []
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    if let articles = articles {
+                        CacheManager().saveDataToUserDefaults(articles, forKey: "newsArticles")
+                    }
+                }
             }
         }
     }

@@ -12,15 +12,15 @@ class CacheManager {
     
     func saveDataToUserDefaults<T: Encodable>(_ data: T, forKey key: String) {
         let defaults = UserDefaults.standard
-        defaults.set(try? PropertyListEncoder().encode(data), forKey: key)
+        defaults.set(try? JSONEncoder().encode(data), forKey: key)
     }
     
     func fetchDataFromUserDefaults<T: Decodable>(forKey key: String) -> T? {
         let defaults = UserDefaults.standard
-        if let data = defaults.value(forKey: key) as? Data {
-            return try? PropertyListDecoder().decode(T.self, from: data)
+        if let data = defaults.data(forKey: key) {
+            return try? JSONDecoder().decode(T.self, from: data)
         }
         return nil
     }
-    
 }
+
