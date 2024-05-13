@@ -8,13 +8,11 @@
 
 import Foundation
 
-// Estrutura para representar uma fonte de notícias
 struct NewsSource: Codable {
     let id: String?
     let name: String
 }
 
-// Estrutura para representar um artigo de notícia
 struct NewsArticle: Codable {
     let source: NewsSource
     let author: String?
@@ -26,7 +24,6 @@ struct NewsArticle: Codable {
     let content: String?
 }
 
-// Estrutura para representar a resposta da API de notícias
 struct NewsResponse: Codable {
     let status: String
     let totalResults: Int

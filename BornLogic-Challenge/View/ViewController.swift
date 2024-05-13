@@ -47,14 +47,25 @@ class ViewController: UIViewController {
 
     
     internal func fetchData() {
-        dataManager.fetchData { [weak self] articles, error in
-            if let error = error {
-                print("Erro: \(error.localizedDescription)")
-                return
-            }
-            self?.dataSource?.articles = articles ?? []
+        if let cachedArticles: [NewsArticle] = CacheManager().fetchDataFromUserDefaults(forKey: "newsArticles") {
+            self.dataSource?.articles = cachedArticles
             DispatchQueue.main.async {
-                self?.tableView.reloadData()
+                self.tableView.reloadData()
+            }
+        } else {
+            dataManager.fetchData { [weak self] articles, error in
+                if let error = error {
+                    print("Erro: \(error.localizedDescription)")
+                    return
+                }
+                self?.dataSource?.articles = articles ?? []
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    // Salvar os dados em cache após o carregamento
+                    if let articles = articles {
+                        CacheManager().saveDataToUserDefaults(articles, forKey: "newsArticles")
+                    }
+                }
             }
         }
     }
