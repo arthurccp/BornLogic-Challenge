@@ -17,6 +17,7 @@ class ArticleDetailViewController: UIViewController {
     private var dateLabel: UILabel?
     private var noImageView: UIView?
     private var contentLabel: UILabel?
+    private var activityIndicator: UIActivityIndicatorView? 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,23 +46,27 @@ class ArticleDetailViewController: UIViewController {
     
     internal func setupImageView() {
         if let urlString = article?.urlToImage {
-            // Verifica se há uma imagem salva no UserDefaults
             if let savedImageData = UserDefaults.standard.data(forKey: urlString),
                 let savedImage = UIImage(data: savedImageData) {
-                // Se a imagem estiver disponível, carrega-a
                 imageView = UIImageView(image: savedImage)
             } else {
-                // Caso contrário, carrega a imagem da URL
                 imageView = UIImageView()
                 imageView?.contentMode = .scaleAspectFit
                 imageView?.translatesAutoresizingMaskIntoConstraints = false
                 stackView?.addArrangedSubview(imageView!)
+                activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+                activityIndicator?.translatesAutoresizingMaskIntoConstraints = false
+                activityIndicator?.startAnimating()
+                imageView?.addSubview(activityIndicator!)
                 
                 NSLayoutConstraint.activate([
-                    imageView!.heightAnchor.constraint(equalToConstant: 200) // Altura da imagem
+                    imageView!.heightAnchor.constraint(equalToConstant: 200),
+                    activityIndicator!.centerXAnchor.constraint(equalTo: imageView!.centerXAnchor),
+                    activityIndicator!.centerYAnchor.constraint(equalTo: imageView!.centerYAnchor)
                     ])
                 
                 imageView!.loadImage(fromURL: urlString)
+                
             }
         } else {
             showNoImagePlaceholder()
@@ -83,14 +88,11 @@ class ArticleDetailViewController: UIViewController {
         grayView.addSubview(emojiLabel)
         
         NSLayoutConstraint.activate([
-            grayView.heightAnchor.constraint(equalToConstant: 200), // Altura da view
+            grayView.heightAnchor.constraint(equalToConstant: 200),
             emojiLabel.centerXAnchor.constraint(equalTo: grayView.centerXAnchor),
             emojiLabel.centerYAnchor.constraint(equalTo: grayView.centerYAnchor)
             ])
     }
-
-
-
     
     internal func setupDateLabel() {
         guard let publicationDate = article?.publishedAt else { return }
@@ -114,7 +116,6 @@ class ArticleDetailViewController: UIViewController {
                 stackView?.addArrangedSubview(contentLabel)
             }
         } else {
-            // Caso não haja descrição disponível, adicionar um texto informativo
             let noDescriptionLabel = UILabel()
             noDescriptionLabel.text = "Sem descrição disponível."
             noDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -132,7 +133,17 @@ extension UIImageView {
             if let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) {
                 DispatchQueue.main.async {
                     self?.image = image
+                    self?.removeActivityIndicator()
                 }
+            }
+        }
+    }
+    
+    private func removeActivityIndicator() {
+        self.subviews.forEach {
+            if let activityIndicator = $0 as? UIActivityIndicatorView {
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
             }
         }
     }
