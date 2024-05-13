@@ -15,6 +15,7 @@ class ArticleDetailViewController: UIViewController {
     private var imageView: UIImageView?
     private var stackView: UIStackView?
     private var dateLabel: UILabel?
+    private var noImageView: UIView?
     private var contentLabel: UILabel?
     
     override func viewDidLoad() {
@@ -63,17 +64,33 @@ class ArticleDetailViewController: UIViewController {
                 imageView!.loadImage(fromURL: urlString)
             }
         } else {
-            
-            let noImageLabel = UILabel()
-            noImageLabel.text = "Sem imagem"
-            noImageLabel.textColor = .black
-            noImageLabel.textAlignment = .center
-            noImageLabel.translatesAutoresizingMaskIntoConstraints = false
-            
-            stackView?.addArrangedSubview(noImageLabel)
+            showNoImagePlaceholder()
         }
         
     }
+    
+    internal func showNoImagePlaceholder() {
+        let grayView = UIView()
+        grayView.translatesAutoresizingMaskIntoConstraints = false
+        grayView.backgroundColor = UIColor.lightGray
+        stackView?.addArrangedSubview(grayView)
+        
+        let emojiLabel = UILabel()
+        emojiLabel.text = "🚫"
+        emojiLabel.font = UIFont.systemFont(ofSize: 60)
+        emojiLabel.translatesAutoresizingMaskIntoConstraints = false
+        emojiLabel.textAlignment = .center
+        grayView.addSubview(emojiLabel)
+        
+        NSLayoutConstraint.activate([
+            grayView.heightAnchor.constraint(equalToConstant: 200), // Altura da view
+            emojiLabel.centerXAnchor.constraint(equalTo: grayView.centerXAnchor),
+            emojiLabel.centerYAnchor.constraint(equalTo: grayView.centerYAnchor)
+            ])
+    }
+
+
+
     
     internal func setupDateLabel() {
         guard let publicationDate = article?.publishedAt else { return }
