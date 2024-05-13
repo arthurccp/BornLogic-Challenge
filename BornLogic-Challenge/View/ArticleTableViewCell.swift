@@ -34,6 +34,7 @@ class ArticleTableViewCell: UITableViewCell{
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 14)
+        label.textAlignment = .justified
         return label
     }()
     

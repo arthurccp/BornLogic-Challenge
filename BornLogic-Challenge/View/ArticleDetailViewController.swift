@@ -5,6 +5,15 @@
 //  Created by Arthur on 12/05/2024.
 //  Copyright © 2024 Arthur. All rights reserved.
 //
+
+//
+//  ArticleDetailViewController.swift
+//  BornLogic-Challenge
+//
+//  Created by Arthur on 12/05/2024.
+//  Copyright © 2024 Arthur. All rights reserved.
+//
+
 import Foundation
 import UIKit
 
@@ -23,7 +32,8 @@ class ArticleDetailViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
+        navigationController?.navigationBar.prefersLargeTitles = false
+
         setupStackView()
         setupImageView()
         setupDateLabel()
@@ -101,6 +111,7 @@ class ArticleDetailViewController: UIViewController {
         dateLabel?.translatesAutoresizingMaskIntoConstraints = false
         dateLabel?.numberOfLines = 1
         dateLabel?.text = "Data: \(publicationDate)"
+        dateLabel?.textColor = .gray // Text color set to gray
         if let dateLabel = dateLabel {
             stackView?.addArrangedSubview(dateLabel)
         }
@@ -112,6 +123,7 @@ class ArticleDetailViewController: UIViewController {
             contentLabel?.translatesAutoresizingMaskIntoConstraints = false
             contentLabel?.text = articleContent
             contentLabel?.numberOfLines = 0
+            contentLabel?.textAlignment = .justified
             if let contentLabel = contentLabel {
                 stackView?.addArrangedSubview(contentLabel)
             }
@@ -119,7 +131,7 @@ class ArticleDetailViewController: UIViewController {
             let noDescriptionLabel = UILabel()
             noDescriptionLabel.text = "Sem descrição disponível."
             noDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-            
+            noDescriptionLabel.textColor = .gray
             stackView?.addArrangedSubview(noDescriptionLabel)
         }
     }

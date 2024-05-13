@@ -22,6 +22,7 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
         cell.titleLabel.text = article.title
         cell.authorLabel.text = article.author ?? "Autor Desconhecido"
         cell.descriptionLabel.text = article.description ?? "Sem descrição"
+        
         return cell
     }
 }

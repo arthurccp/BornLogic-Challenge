@@ -42,7 +42,9 @@ class ViewController: UIViewController {
         tableView.dataSource = dataSource
         tableView.delegate = self
         tableView.register(ArticleTableViewCell.self, forCellReuseIdentifier: "ArticleCell")
-        fetchData() 
+        fetchData()
+        navigationController?.navigationBar.prefersLargeTitles = true
+
     }
 
     internal func fetchData() {

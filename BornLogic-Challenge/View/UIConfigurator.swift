@@ -13,7 +13,7 @@ class UIConfigurator {
     static func setupNavigationBar(viewController: UIViewController) {
         let navigationController = UINavigationController(rootViewController: viewController)
         UIApplication.shared.windows.first?.rootViewController = navigationController
-        viewController.navigationItem.title = "TableView"
+        viewController.navigationItem.title = "Bornlogic-Challenge"
     }
     
     static func setupTableView(tableView: UITableView, dataSource: UITableViewDataSource & UITableViewDelegate) {
