@@ -18,7 +18,6 @@ class ArticleTableViewCell: UITableViewCell{
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
         label.textAlignment = .justified
-
         label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()

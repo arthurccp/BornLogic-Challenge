@@ -76,7 +76,6 @@ class ArticleDetailViewController: UIViewController {
                     ])
                 
                 imageView!.loadImage(fromURL: urlString)
-                
             }
         } else {
             showNoImagePlaceholder()

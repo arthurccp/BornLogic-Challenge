@@ -9,7 +9,6 @@
 import Foundation
 
 class CacheManager {
-    
     func saveDataToUserDefaults<T: Encodable>(_ data: T, forKey key: String) {
         let defaults = UserDefaults.standard
         defaults.set(try? JSONEncoder().encode(data), forKey: key)

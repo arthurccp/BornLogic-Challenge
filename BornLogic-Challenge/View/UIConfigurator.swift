@@ -16,7 +16,7 @@ class UIConfigurator {
         
         let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 240, height: 44))
         
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 190, height: 44)) // Centralizando o título
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 190, height: 44)) 
         titleLabel.center = titleView.center
         titleLabel.text = "Bornlogic-Challenge"
         titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
