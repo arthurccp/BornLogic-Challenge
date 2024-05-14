@@ -10,7 +10,7 @@
 
 ## Instalação
 1. Clone este repositório em sua máquina local:
-   git clone [https://github.com/seu-usuario/news-app.git](https://github.com/arthurccp/BornLogic-Challenge)
+   git clone [https://github.com/arthurccp/BornLogic-Challenge]
 
 # Abra o projeto no Xcode.
 Build e execute o aplicativo em um dispositivo ou simulador iOS.
@@ -31,6 +31,5 @@ Foram escritos testes unitários usando XCTest para garantir a qualidade e robus
 O layout do NewsApp foi desenvolvido inteiramente com ViewCode, seguindo as diretrizes de design do iOS.
 
 # Autor
-arthutquirinos@gmail.com
 https://www.linkedin.com/in/arthur-silva-devmobile/
 
