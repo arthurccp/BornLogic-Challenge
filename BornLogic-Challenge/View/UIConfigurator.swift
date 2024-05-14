@@ -27,7 +27,6 @@ class UIConfigurator {
         }
     }
 
-    
     static func setupTableView(tableView: UITableView, dataSource: UITableViewDataSource & UITableViewDelegate) {
         tableView.dataSource = dataSource
         tableView.delegate = dataSource

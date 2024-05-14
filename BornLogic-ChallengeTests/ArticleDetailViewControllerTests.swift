@@ -116,9 +116,7 @@ class ArticleDetailViewControllerTests: XCTestCase {
         
         let imageView = viewController.imageView
         
-        // Check if the image view is not nil
         XCTAssertNotNil(imageView)
-        
     }
 }
 

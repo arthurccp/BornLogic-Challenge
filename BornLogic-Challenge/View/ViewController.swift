@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK: - Properties
+    
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -18,6 +20,8 @@ class ViewController: UIViewController {
     
     var dataManager: DataFetchable = DataManager()
     var dataSource: TableViewDataSource?
+    
+    // MARK: - Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,15 +32,16 @@ class ViewController: UIViewController {
         fetchData()
     }
     
+    // MARK: - Internal Methods
+    
     internal func setupTableViewConstraints() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor), 
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
     }
-
     
     internal func setupTableView() {
         dataSource = TableViewDataSource()
@@ -49,8 +54,7 @@ class ViewController: UIViewController {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         tableView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
-
-
+    
     internal func fetchData() {
         if let cachedArticles: [NewsArticle] = CacheManager().fetchDataFromUserDefaults(forKey: "newsArticles") {
             self.dataSource?.articles = cachedArticles
@@ -79,7 +83,6 @@ class ViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-
 }
 
 extension ViewController: UITableViewDelegate {

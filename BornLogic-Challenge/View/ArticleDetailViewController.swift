@@ -6,19 +6,14 @@
 //  Copyright © 2024 Arthur. All rights reserved.
 //
 
-//
-//  ArticleDetailViewController.swift
-//  BornLogic-Challenge
-//
-//  Created by Arthur on 12/05/2024.
-//  Copyright © 2024 Arthur. All rights reserved.
-//
 
 import Foundation
 import UIKit
 
 class ArticleDetailViewController: UIViewController {
     
+    // MARK: - Properties
+
     var article: NewsArticle?
     
     internal var imageView: UIImageView?
@@ -28,6 +23,8 @@ class ArticleDetailViewController: UIViewController {
     internal var contentLabel: UILabel?
     internal var activityIndicator: UIActivityIndicatorView?
     
+    // MARK: - Lifecycle Methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,6 +38,8 @@ class ArticleDetailViewController: UIViewController {
         setupContentLabel()
     }
     
+    // MARK: - Internal Methods
+
     internal func setupStackView() {
         stackView = UIStackView()
         stackView?.axis = .vertical
@@ -55,7 +54,6 @@ class ArticleDetailViewController: UIViewController {
             ])
     }
 
-    
     internal func setupImageView() {
         if let urlString = article?.urlToImage {
             if let savedImageData = UserDefaults.standard.data(forKey: urlString),
@@ -83,7 +81,6 @@ class ArticleDetailViewController: UIViewController {
         } else {
             showNoImagePlaceholder()
         }
-        
     }
     
     internal func setupTitleLabel() {
