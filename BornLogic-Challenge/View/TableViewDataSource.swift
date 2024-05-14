@@ -22,7 +22,12 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
         cell.titleLabel.text = article.title
         cell.authorLabel.text = article.author ?? "Autor Desconhecido"
         cell.descriptionLabel.text = article.description ?? "Sem descrição"
-        
+
+        if let imageUrl = article.urlToImage {
+            cell.thumbnailImageView.loadImage(fromURL: imageUrl)
+        } else {
+            cell.thumbnailImageView.image = UIImage(named: "placeholder_image")
+        }
         return cell
     }
 }

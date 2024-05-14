@@ -16,7 +16,9 @@ class ArticleTableViewCell: UITableViewCell{
     var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
+        label.numberOfLines = 3
+        label.textAlignment = .justified
+
         label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
@@ -32,10 +34,18 @@ class ArticleTableViewCell: UITableViewCell{
     var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
+        label.numberOfLines = 3
         label.font = UIFont.systemFont(ofSize: 14)
         label.textAlignment = .justified
         return label
+    }()
+    
+    var thumbnailImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
     }()
     
     // MARK: - Initialization
@@ -56,13 +66,15 @@ class ArticleTableViewCell: UITableViewCell{
         addSubview(titleLabel)
         addSubview(authorLabel)
         addSubview(descriptionLabel)
+        addSubview(thumbnailImageView)
+
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            titleLabel.trailingAnchor.constraint(equalTo: thumbnailImageView.leadingAnchor, constant: -20),
             
             authorLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
             authorLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
@@ -71,7 +83,13 @@ class ArticleTableViewCell: UITableViewCell{
             descriptionLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 4),
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
+            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            
+            thumbnailImageView.widthAnchor.constraint(equalToConstant: 80),
+            thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor),
+            thumbnailImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            thumbnailImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
             ])
     }
+
 }
