@@ -10,7 +10,7 @@
 
 ## Instalação
 1. Clone este repositório em sua máquina local:
-   git clone https://github.com/seu-usuario/news-app.git
+   git clone [https://github.com/seu-usuario/news-app.git](https://github.com/arthurccp/BornLogic-Challenge)
 
 # Abra o projeto no Xcode.
 Build e execute o aplicativo em um dispositivo ou simulador iOS.
