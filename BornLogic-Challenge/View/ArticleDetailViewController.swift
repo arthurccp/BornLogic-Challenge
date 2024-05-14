@@ -35,6 +35,7 @@ class ArticleDetailViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
 
         setupStackView()
+        setupTitleLabel()
         setupImageView()
         setupDateLabel()
         setupContentLabel()
@@ -53,6 +54,7 @@ class ArticleDetailViewController: UIViewController {
             stackView!.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
             ])
     }
+
     
     internal func setupImageView() {
         if let urlString = article?.urlToImage {
@@ -84,6 +86,17 @@ class ArticleDetailViewController: UIViewController {
         
     }
     
+    internal func setupTitleLabel() {
+        guard let title = article?.title else { return }
+        
+        let titleLabel = UILabel()
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.numberOfLines = 0
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.text = title
+        stackView?.addArrangedSubview(titleLabel)
+    }
+    
     internal func showNoImagePlaceholder() {
         let grayView = UIView()
         grayView.translatesAutoresizingMaskIntoConstraints = false
@@ -111,7 +124,7 @@ class ArticleDetailViewController: UIViewController {
         dateLabel?.translatesAutoresizingMaskIntoConstraints = false
         dateLabel?.numberOfLines = 1
         dateLabel?.text = "Data: \(publicationDate)"
-        dateLabel?.textColor = .gray // Text color set to gray
+        dateLabel?.textColor = .gray 
         if let dateLabel = dateLabel {
             stackView?.addArrangedSubview(dateLabel)
         }

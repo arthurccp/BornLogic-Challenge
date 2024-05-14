@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.register(ArticleTableViewCell.self, forCellReuseIdentifier: "ArticleCell")
         fetchData()
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         tableView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
@@ -60,7 +60,6 @@ class ViewController: UIViewController {
         } else {
             dataManager.fetchData { [weak self] articles, error in
                 if let error = error {
-                    // Exibe um alerta com a mensagem de erro
                     self?.presentErrorAlert(message: "Erro ao buscar dados: \(error.localizedDescription)")
                     return
                 }
