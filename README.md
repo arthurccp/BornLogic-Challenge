@@ -1,4 +1,4 @@
-# NewsApp
+# BornLogic-Challenge
 
 NewsApp é um aplicativo para iOS que utiliza a API do NewsAPI.org para exibir artigos de notícias em duas telas diferentes. 
 - Exibe uma lista de artigos de notícias na primeira tela, incluindo imagens, autores, títulos e descrições.
